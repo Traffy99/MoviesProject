@@ -64,6 +64,13 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <a href="{{action('Auth\LoginController@redirectToProvider')}}" class="btn btn-link">
+                                    {{ __('Login with google') }}
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
