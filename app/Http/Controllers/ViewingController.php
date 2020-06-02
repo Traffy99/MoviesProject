@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Movie;
+use App\Viewing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ViewingController extends Controller
@@ -13,7 +16,8 @@ class ViewingController extends Controller
      */
     public function index()
     {
-        return view('viewings');
+        $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->get();
+        return view('viewings', ['viewings'=>$viewings]);
     }
 
     /**

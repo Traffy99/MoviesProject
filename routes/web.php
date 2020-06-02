@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('viewings');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'ViewingController@index');
+Route::get('/', 'ViewingController@index');
 Route::resource('viewings', 'ViewingController');
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('lang/{locale}','LanguageController')->name('lang');
