@@ -49,7 +49,8 @@ class ViewingController extends Controller
      */
     public function show($id)
     {
-        //
+        $viewing = Viewing::where('id','=', $id)->get()[0];
+        return view('viewing', ['viewing'=>$viewing]);
     }
 
     /**

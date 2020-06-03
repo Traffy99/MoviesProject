@@ -5,6 +5,9 @@ return [
     'login'=>'Login',
     'register'=>'Register',
     'viewingstoday'=>'Viewings today',
-    'noviewingstoday'=>'There are no viewings today'
+    'noviewingstoday'=>'There are no viewings today',
+    'length'=>'Length: ',
+    'minutes'=>'minutes',
+    'reviews'=>'Reviews',
 
 ];
