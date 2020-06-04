@@ -20,7 +20,10 @@ Auth::routes();
 Route::get('/home', 'ViewingController@index');
 Route::get('/', 'ViewingController@index');
 Route::resource('viewings', 'ViewingController');
+Route::resource('movies', 'MovieController');
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('lang/{locale}','LanguageController')->name('lang');
+Route::resource('/review','ReviewController')->except(['create']);
+Route::get('/review/create/{movie}', 'ReviewController@create');

@@ -5,20 +5,18 @@ namespace App\Http\Controllers;
 use App\Movie;
 use App\Review;
 use App\Viewing;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ViewingController extends Controller
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->get();
-        return view('viewings', ['viewings'=>$viewings]);
+        //
     }
 
     /**
@@ -50,7 +48,9 @@ class ViewingController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie = Movie::where('id','=', $id)->get()[0];
+        $reviews = Review::where('movie_id', '=', $movie->id)->orderBy('created_at', 'desc')->get();
+        return view('movie', ['movie'=>$movie, 'reviews'=>$reviews]);
     }
 
     /**
