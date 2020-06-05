@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'ViewingController@index');
 Route::get('/', 'ViewingController@index');
 Route::resource('viewings', 'ViewingController');
 Route::resource('movies', 'MovieController');
+Route::post('viewings/filter', 'ViewingController@filterViewings');
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');

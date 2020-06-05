@@ -12,7 +12,7 @@
                         {{ Form::hidden('movie', $movie->id )}}
 
                         <div class="form-group row justify-content-center">
-                            {{ Form::text('text', '', ['style'=>'height:100px; width: 60%', 'class' => 'form-control resizable-textarea '.($errors->has('text') ? ' is-invalid' : '')]) }}
+                            {{ Form::textArea('text', '', ['style'=>'height:100px; width: 60%', 'class' => 'form-control resizable-textarea '.($errors->has('text') ? ' is-invalid' : '')]) }}
 
                         </div>
 

@@ -34,7 +34,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li><a class="nav-link" href="{{ route('viewings.index') }}">{{ __('messages.viewings') }}</a></li>
-
+                    <li><a class="nav-link" href="{{ route('movies.index') }}">{{ __('messages.movies') }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -72,6 +72,12 @@
                                     @csrf
                                 </form>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('lang', 'lv') }}">LV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('lang','en') }}">ENG</a>
                         </li>
                     @endguest
                 </ul>

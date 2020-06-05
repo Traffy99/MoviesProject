@@ -18,7 +18,12 @@ class ViewingController extends Controller
     public function index()
     {
         $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->get();
-        return view('viewings', ['viewings'=>$viewings]);
+        $movies = Movie::all();
+        $movietitle = ['No selection' => ''];
+        foreach ($movies as $movie) {
+            $movietitle [$movie->id ] = $movie->title;
+        }
+        return view('viewings', ['viewings'=>$viewings, 'time'=>Carbon::today(), 'moviestitles'=>$movietitle]);
     }
 
     /**
@@ -85,5 +90,34 @@ class ViewingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filterViewings(Request $request)
+    {
+        $rules = array(
+            'date' => 'nullable|date|after_or_equal:today',
+        );
+        $this->validate($request, $rules);
+        $movies = Movie::all();
+        $movietitle = ['No selection' => ''];
+        foreach ($movies as $movie) {
+            $movietitle [$movie->id ] = $movie->title;
+        }
+
+
+
+        $viewings=Viewing::where('id', '>', 0);
+
+
+        if ($request['date'])
+            $viewings= $viewings -> where('time', '>=', $request['date'])->where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::parse($request['date'])->addDay()->format('y-m-d'));
+
+        if($request['movie'] !== 'No selection')
+            $viewings= $viewings -> where('movie_id', '=', $request['movie']);
+
+
+
+        return view('viewings', ['viewings'=>$viewings->get(), 'time'=>$request['date'], 'moviestitles'=>$movietitle]);
+
     }
 }

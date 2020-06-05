@@ -2,10 +2,15 @@
 return [
     'app_name' => 'Movies',
     'viewings' => 'Viewings',
+    'viewingson' => 'Viewings on ',
+    'movies' => 'Movies',
+    'movie' => 'Movie: ',
     'login'=>'Login',
     'register'=>'Register',
     'viewingstoday'=>'Viewings today',
-    'noviewingstoday'=>'There are no viewings today',
+    'allmovies'=>'All movies',
+    'searchviewing'=>'Search for a viewing : ',
+    'noviewingstoday'=>'There are no viewings for this date',
     'length'=>'Length: ',
     'minutes'=>'minutes',
     'reviews'=>'Reviews',
@@ -14,5 +19,8 @@ return [
     'review_needed'=>'A review can`t be empty',
     'author'=>'Author: ',
     'time'=>'Time: ',
+    'date'=>'Date: ',
+    'noseats'=>'No seats available',
+    'seatsexist'=>'Seats available: ',
 
 ];
