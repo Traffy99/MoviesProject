@@ -22,10 +22,20 @@
                                 </div>
                                 <br>
                                 <p>{{$review->review_text}}</p>
-                                <p style="float:right">{{Carbon\Carbon::parse($review->time)->format('d.m.y H:i')}}</p>
 
-                                <br>
+
+                                @if(auth()->user()&&$review->user_id == auth()->user()->id)
+                                    <div class="row">
+                                        <a style="margin-bottom: 20px; margin-right: 10px; margin-left: 20px" class="btn btn-light" href="{{ action('ReviewController@edit', $review->id) }}">{{__('messages.edit_review')}}</a>
+                                        {{ Form::open(['action' => ['ReviewController@destroy', $review->id], 'class' => 'form-horizontal', 'method'=>'delete']) }}
+                                        {{ Form::submit(__('messages.delete'), ['class' => 'btn btn-light']) }}
+                                        {{ Form::close() }}
+                                    </div>
+                                @endif
+                                <p style="float:right">{{Carbon\Carbon::parse($review->time)->format('d.m.y H:i')}}</p>
                             </div>
+
+                            <br>
                         @endforeach
 
                     </div>

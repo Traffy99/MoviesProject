@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $(".card-text").on('click', '.reserve', function (e) {
+                var url = "{{ action('ReservationController@store') }}";
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {viewing_id: e.target.id, _token: CSRF_TOKEN },
+                    success: function (data) {
+                        if (data["success"]){
+                            $("#" + data["viewing_id"]).toggleClass(" btn-light btn-success");
+                            $("#" + data["viewing_id"]).prop('disabled', true);
+                            $("#" + data["viewing_id"])[0].innerText = "{{__('messages.successfullyreserved')}}";
+                            $("#seats" +data["viewing_id"])[0].innerText = `{{__('messages.seatsexist')}} ${100-(data['seats'])}`;
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            })
+        });
+    </script>
+
     <div class="container">
         <div  class="row justify-content-center" >
             {{ Form::open(['action' => 'ViewingController@filterViewings', 'class' => 'form-horizontal']) }}
@@ -61,7 +87,7 @@
                                 <div class="card-body {{$loop->last? "": "border-bottom"}} ">
                                     <div style="display: inline-block; padding-right: 30px">
                                         <a href="{{ action('MovieController@show', $viewing->movie_id)}}">
-                                            <img src="{{$viewing->movie->cover}}" alt="image" width="100">
+                                            <img src="{{$viewing->movie->cover}}" alt="image" width="200">
                                         </a>
                                     </div>
                                     <div style="display: inline-block">
@@ -71,9 +97,17 @@
                                         <a href="{{ action('MovieController@show', $viewing->movie_id)}}">
                                             <h3>{{$viewing->movie->title}}</h3>
                                         </a>
-                                        @if(($viewing->reserved_seats_count)<100)<p class="text-success">{{__('messages.seatsexist')}} {{100-($viewing->reserved_seats_count)}}</p>
+                                        @if(($viewing->reserved_seats_count)<100)<p id="seats{{$viewing->id}}" class="text-success">{{__('messages.seatsexist')}} {{100-($viewing->reserved_seats_count)}}</p>
                                         @else <p class="text-danger">{{__('messages.noseats')}}</p>
                                         @endif
+                                            @auth()
+                                                <div class="card-text">
+                                                     @if(in_array($viewing->id, $viewingres))<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-warning" >{{__('messages.alreadyreserved')}}</a>
+                                                     @else
+                                                        @if(($viewing->reserved_seats_count) < 100)<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-light reserve" >{{__('messages.reserve')}}</a>@endif
+                                                     @endif
+                                                </div>
+                                            @endauth
                                     </div>
 
                                 </div>

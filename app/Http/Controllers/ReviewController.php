@@ -24,7 +24,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'text' => 'required',
+            'text' => 'required|max:1000',
         );
         $this->validate($request, $rules, $this->messages());
 
@@ -46,6 +46,43 @@ class ReviewController extends Controller
         return [
             'text.required' => __('messages.review_needed')
         ];
+    }
+    public function edit($id)
+    {
+        $review = Review::findorfail($id);
+        return view('edit_review', ['text'=>$review->review_text, 'movie'=>$review->movie, 'review_id'=>$id]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $rules = array(
+            'text' => 'required|max:1000',
+        );
+        $this->validate($request, $rules, $this->messages());
+
+        $review = Review::findorfail($id);
+        $review->review_text = $request['text'];
+        //$review->time = Carbon::now('GMT+3');
+        $review->save();
+
+        $movie = Movie::findorfail($request['movie']);
+
+
+        return redirect()->route('movies.show', $movie);
+    }
+    public function destroy($id)
+    {
+        $review = Review::findorfail($id);
+        $review->delete();
+        return redirect()->route('movies.show', $review->movie);
+
     }
 
 }

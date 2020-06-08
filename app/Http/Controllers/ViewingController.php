@@ -20,10 +20,18 @@ class ViewingController extends Controller
         $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->get();
         $movies = Movie::all();
         $movietitle = ['No selection' => ''];
+        $viewingres = [];
+        if(auth()->user()) {
+            foreach ($viewings as $viewing) {
+                foreach ($viewing->reservations as $reservation) {
+                    if ($reservation->user_id == auth()->user()->id) $viewingres[] = $reservation->viewing_id;
+                }
+            }
+        }
         foreach ($movies as $movie) {
             $movietitle [$movie->id ] = $movie->title;
         }
-        return view('viewings', ['viewings'=>$viewings, 'time'=>Carbon::today(), 'moviestitles'=>$movietitle]);
+        return view('viewings', ['viewings'=>$viewings, 'time'=>Carbon::today(), 'moviestitles'=>$movietitle, 'viewingres'=>$viewingres]);
     }
 
     /**
@@ -104,8 +112,6 @@ class ViewingController extends Controller
             $movietitle [$movie->id ] = $movie->title;
         }
 
-
-
         $viewings=Viewing::where('id', '>', 0);
 
 
@@ -113,11 +119,21 @@ class ViewingController extends Controller
             $viewings= $viewings -> where('time', '>=', $request['date'])->where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::parse($request['date'])->addDay()->format('y-m-d'));
 
         if($request['movie'] !== 'No selection')
-            $viewings= $viewings -> where('movie_id', '=', $request['movie']);
+            $viewings= $viewings -> where('movie_id', '=', $request['movie'])->where('time', '>=', Carbon::now('GMT+3'));
+
+        $viewings = $viewings->get();
+        $viewingres = [];
+        if(auth()->user()) {
+            foreach ($viewings as $viewing) {
+                foreach ($viewing->reservations as $reservation) {
+                    if ($reservation->user_id == auth()->user()->id) $viewingres[] = $reservation->viewing_id;
+                }
+            }
+        }
 
 
 
-        return view('viewings', ['viewings'=>$viewings->get(), 'time'=>$request['date'], 'moviestitles'=>$movietitle]);
+        return view('viewings', ['viewings'=>$viewings, 'time'=>$request['date'], 'moviestitles'=>$movietitle, 'viewingres'=>$viewingres]);
 
     }
 }

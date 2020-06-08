@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/', 'ViewingController@index');
 Route::resource('viewings', 'ViewingController');
 Route::resource('movies', 'MovieController');
+Route::resource('reservations', 'ReservationController');
 Route::post('viewings/filter', 'ViewingController@filterViewings');
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
