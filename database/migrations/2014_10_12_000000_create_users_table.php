@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default('');
-            $table->integer('profile_picture_id')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->boolean('permission_level')->default(false);
             $table->boolean('is_blocked')->default(false);
             $table->string('google_id')->nullable();

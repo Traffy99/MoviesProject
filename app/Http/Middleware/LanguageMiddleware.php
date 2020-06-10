@@ -21,6 +21,14 @@ class LanguageMiddleware
         if (!empty($lang)) {
             App::setLocale($lang);
         }
+        else{
+            $language = 'en';
+            $header = $request->header('accept-language');
+            if(strlen($header) > 1){
+                $language = substr($header, 0, 2);
+            }
+            App::setLocale($language);
+        }
         return $next($request);
     }
 }

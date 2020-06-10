@@ -28,5 +28,12 @@ return [
     'date'=>'Date: ',
     'noseats'=>'No seats available',
     'seatsexist'=>'Seats available: ',
+    'profile'=>'Profile',
+    'email'=>'Email: ',
+    'activereservations'=>'Active reservations',
+    'delete_picture'=>'Remove picture',
+    'editname'=> 'Edit name',
+    'editpicture'=>'Edit picture',
+    'edit_profile'=>'Edit profile',
 
 ];

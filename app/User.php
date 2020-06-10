@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'profile_picture_id', 'permission_level', 'is_blocked'
+        'name', 'email', 'password', 'profile_picture', 'permission_level', 'is_blocked'
     ];
 
 
@@ -47,5 +47,9 @@ class User extends Authenticatable
     }
     public function reservations(){
         return $this->hasMany('App\Reservation');
+    }
+    public function getImageAttribute()
+    {
+        return $this->profile_picture;
     }
 }
