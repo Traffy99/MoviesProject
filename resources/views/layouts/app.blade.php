@@ -36,6 +36,7 @@
                 <ul class="navbar-nav mr-auto">
                     <li><a class="nav-link" href="{{ route('viewings.index') }}">{{ __('messages.viewings') }}</a></li>
                     <li><a class="nav-link" href="{{ route('movies.index') }}">{{ __('messages.movies') }}</a></li>
+                    @if(auth()->user()&&auth()->user()->permission_level == 1)<li><a class="nav-link" href="{{ route('movies.create') }}">{{ __('messages.add_movie') }}</a></li>@endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

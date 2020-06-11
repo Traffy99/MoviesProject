@@ -7,16 +7,13 @@
                 <div class="card" style="display: flex; flex-direction: row;">
                     <div style="width: 40%; padding: 60px" class="border-right">
                             @csrf
-                            @if (auth()->user()->getImageAttribute())<img src="{{ asset('storage/'.auth()->user()->getImageAttribute())}}" style="width: 100px; height: 100px; border-radius: 50%">
+                            @if (auth()->user()->getImageAttribute())<img src="{{ asset(auth()->user()->getImageAttribute())}}" style="width: 100px; height: 100px; border-radius: 50%">
                             @else <img src="{{ asset('storage/uploads/images/default_avatar.jpg')}}" style="width: 100px; height: 100px; border-radius: 50%">
                             @endif
                         <h2 style="margin-top: 20px">{{auth()->user()->name}}</h2>
                         <h6>{{__('messages.email')}} {{auth()->user()->email}}</h6>
                         <a style="margin-bottom: 20px; margin-right: 10px; margin-left: 20px" class="btn btn-light" href="{{ action('ProfileController@edit', auth()->user()->id) }}">{{__('messages.edit_profile')}}</a>
-
                     </div>
-
-
 
                     <div style="padding-top: 40px; padding-left: 50px">
                     <h2 style="padding-top: 50px">{{__('messages.activereservations')}}</h2>

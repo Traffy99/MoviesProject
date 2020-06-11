@@ -18,12 +18,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'ViewingController@index');
+Route::get('viewings/createViewing/{id}', 'ViewingController@createViewing');
 Route::resource('viewings', 'ViewingController');
 Route::resource('movies', 'MovieController');
 Route::resource('reservations', 'ReservationController');
 Route::get('profile/delete', 'ProfileController@deletePicture');
 Route::resource('profile', 'ProfileController');
 Route::post('viewings/filter', 'ViewingController@filterViewings');
+
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');

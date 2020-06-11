@@ -40,7 +40,7 @@ class User extends Authenticatable
     private $permission_level;
 
     public function isAdmin() {
-        return ($this->permission_level == 1);
+        return ($this->permission_level);
     }
     public function reviews(){
         return $this->hasMany('App\Review');

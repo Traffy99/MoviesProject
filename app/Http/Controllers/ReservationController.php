@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservationSoon;
 use App\Reservation;
 use App\Viewing;
+use Carbon\Carbon;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -46,17 +49,23 @@ class ReservationController extends Controller
     {
         $success = false;
         $reservations = Reservation::where('user_id', auth()->user()->id)->where('viewing_id', $request['viewing_id'])->get();
-        if(count($reservations) < 1) {
+        $viewing = Viewing::findorfail($request['viewing_id']);
+        if(count($reservations) < 1 || true) {
             $reservation = new Reservation();
             $reservation->user_id = auth()->user()->id;
             $reservation->viewing_id = $request['viewing_id'];
             $reservation->save();
             $success = true;
-        }
-        $viewing = Viewing::findorfail($request['viewing_id']);
-        $viewing -> reserved_seats_count = $viewing -> reserved_seats_count +1;
-        $viewing->save();
 
+            $viewing->reserved_seats_count = $viewing->reserved_seats_count + 1;
+            $viewing->save();
+
+            $when = Carbon::parse($viewing->time)->subMinutes(165);
+            $user = auth()->user();
+
+            Mail::to($user)->send(new ReservationSoon($reservation));
+
+        }
 
         return response()->json(['success' => $success, 'viewing_id'=>$request['viewing_id'], 'seats'=>$viewing -> reserved_seats_count], 200);
     }

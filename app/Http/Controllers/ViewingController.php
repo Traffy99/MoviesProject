@@ -19,7 +19,7 @@ class ViewingController extends Controller
      */
     public function index()
     {
-        $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->get();
+        $viewings = Viewing::where('time', '>=', Carbon::now('GMT+3'))->where('time', '<', Carbon::tomorrow())->orderBy('time')->get();
         $movies = Movie::all();
         $movietitle = ['No selection' => ''];
         $viewingres = [];
@@ -46,6 +46,12 @@ class ViewingController extends Controller
         //
     }
 
+    public function createViewing($id)
+    {
+        $movie = Movie::findorfail($id);
+        return view('add_viewing', ['movie'=>$movie]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +60,27 @@ class ViewingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'time' => 'required|date|after:today|unique:viewings,time',
+            'price' => 'required|numeric|min:1'
+        );
+        $this->validate($request, $rules, $this->messages());
+
+        $viewing = new Viewing();
+        $viewing->movie_id = $request['movie_id'];
+        $viewing->time = $request['time'];
+        $viewing->price = $request['price'];
+        $viewing->save();
+
+
+        return redirect()->route('movies.show', $request['movie_id']);
+    }
+
+    private function messages()
+    {
+        return [
+            'time.unique:viewings,time' => __('messages.alreadyis')
+        ];
     }
 
     /**
@@ -123,7 +149,7 @@ class ViewingController extends Controller
         if($request['movie'] !== 'No selection')
             $viewings= $viewings -> where('movie_id', '=', $request['movie'])->where('time', '>=', Carbon::now('GMT+3'));
 
-        $viewings = $viewings->get();
+        $viewings = $viewings->orderBy('time')->get();
         $viewingres = [];
         if(auth()->user()) {
             foreach ($viewings as $viewing) {

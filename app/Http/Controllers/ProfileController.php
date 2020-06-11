@@ -70,7 +70,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = User::findorfail($id);
-        return view('edit_profile', ['name'=>$user->name]);
+        return view('edit_profile', ['name'=>$user->name, 'email'=>$user->email]);
     }
 
     /**
@@ -82,9 +82,20 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request)
     {
+        if(auth()->user()->name!=$request['name']){
+            $request->validate([
+                'name' => 'unique:users',
+            ]);
+        }
+        if(auth()->user()->email!=$request['email']){
+            $request->validate([
+                'email' => 'unique:users',
+            ]);
+        }
         $request->validate([
             'name' => 'required|string|max:255',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'email' => 'required|string|email|max:255',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $user = User::findOrFail(auth()->user()->id);

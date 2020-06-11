@@ -35,5 +35,19 @@ return [
     'editname'=> 'Edit name',
     'editpicture'=>'Edit picture',
     'edit_profile'=>'Edit profile',
+    'editemail'=>'Edit email',
+    'add_movie' => "Add movie",
+    'add_viewing' => "Add viewing",
+    'add_viewing2' => "Add viewing for ",
+    'title' => 'Title: ',
+    'url' => 'Cover url: ',
+    'alreadyis' => 'There already is a viewing for this time ',
+    'hello'=>'Hello',
+    'emailtext1'=>'Your reservation',
+    'emailtext2'=>'is completed. Thank you for using our services!',
+    'emailsubject'=>'Reservation completed',
+    'update_profile'=>'Update profile',
+    'price'=>'Price: ',
+
 
 ];
