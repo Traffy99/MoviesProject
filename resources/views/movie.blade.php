@@ -15,8 +15,9 @@
                         @if(auth()->user()&&auth()->user()->permission_level == 1)<a class="btn-light btn" href="{{ action('ViewingController@createViewing', $movie->id) }}">{{ __('messages.add_viewing') }}</a>@endif
 
                         <h2 style="padding-top: 50px">{{__('messages.reviews')}}</h2>
-                        <a style="margin-bottom: 20px" class="btn btn-light" href="{{ action('ReviewController@create', $movie->id) }}">{{__('messages.add_review')}}</a>
-
+                        @if (auth()->user()&&!auth()->user()->is_blocked)<a style="margin-bottom: 20px" class="btn btn-light" href="{{ action('ReviewController@create', $movie->id) }}">{{__('messages.add_review')}}</a>
+                        @else <a style="margin-bottom: 20px" class="btn btn-light" >{{__('messages.cant_review')}}</a>
+                        @endif
                         @foreach($reviews as $review)
                             <div class="shadow" style="padding: 20px; margin-bottom: 20px">
                                 <div style="display: flex; flex-direction: row;">

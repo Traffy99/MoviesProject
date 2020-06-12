@@ -100,14 +100,18 @@
                                         @if(($viewing->reserved_seats_count)<100)<p id="seats{{$viewing->id}}" class="text-success">{{__('messages.seatsexist')}} {{100-($viewing->reserved_seats_count)}}</p>
                                         @else <p class="text-danger">{{__('messages.noseats')}}</p>
                                         @endif
-                                            @auth()
-                                                <div class="card-text">
-                                                     @if(in_array($viewing->id, $viewingres))<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-warning" >{{__('messages.alreadyreserved')}}</a>
-                                                     @else
-                                                        @if(($viewing->reserved_seats_count) < 100)<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-light reserve" >{{__('messages.reserve')}}</a>@endif
-                                                     @endif
-                                                </div>
-                                            @endauth
+                                        @auth()
+                                            <div class="card-text">
+                                                @if(in_array($viewing->id, $viewingres))<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-warning" >{{__('messages.alreadyreserved')}}</a>
+                                                @else
+                                                    @if(($viewing->reserved_seats_count) < 100)
+                                                        @if (auth()->user()&&!auth()->user()->is_blocked)<a id="{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-light reserve" >{{__('messages.reserve')}}</a>
+                                                        @else <a id="no{{$viewing->id}}" style="margin-bottom: 10px" class="btn btn-light reserve" >{{__('messages.cantreserve')}}</a>
+                                                        @endif
+                                                    @endif
+                                                @endif
+                                            </div>
+                                        @endauth
                                     </div>
 
                                 </div>

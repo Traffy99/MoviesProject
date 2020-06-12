@@ -37,6 +37,7 @@
                     <li><a class="nav-link" href="{{ route('viewings.index') }}">{{ __('messages.viewings') }}</a></li>
                     <li><a class="nav-link" href="{{ route('movies.index') }}">{{ __('messages.movies') }}</a></li>
                     @if(auth()->user()&&auth()->user()->permission_level == 1)<li><a class="nav-link" href="{{ route('movies.create') }}">{{ __('messages.add_movie') }}</a></li>@endif
+                    @if(auth()->user()&&auth()->user()->permission_level == 1)<li><a class="nav-link" href="{{ route('admin.index') }}">{{ __('messages.all_users') }}</a></li>@endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -79,12 +80,17 @@
                                 </form>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('lang', 'lv') }}">LV</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('lang','en') }}">ENG</a>
-                        </li>
+                        @if(Lang::locale()  == 'en')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lang', 'lv') }}">LV</a>
+                            </li>
+                        @endif
+                        @if(Lang::locale() == 'lv')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lang','en') }}">ENG</a>
+                            </li>
+                        @endif
+
                     @endguest
                 </ul>
             </div>

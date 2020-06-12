@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/', 'ViewingController@index');
 Route::get('viewings/createViewing/{id}', 'ViewingController@createViewing');
 Route::resource('viewings', 'ViewingController');
+Route::get('admin/block/{id}', 'AdminController@block');
+Route::resource('admin', 'AdminController');
 Route::resource('movies', 'MovieController');
 Route::resource('reservations', 'ReservationController');
 Route::get('profile/delete', 'ProfileController@deletePicture');

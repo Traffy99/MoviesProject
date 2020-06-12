@@ -48,6 +48,7 @@ return [
     'emailsubject'=>'Reservation completed',
     'update_profile'=>'Update profile',
     'price'=>'Price: ',
-
-
+    'cant_review'=>'You have been blocked from this action',
+    'cantreserve'=>'You have been blocked from this action',
+    'all_users'=>'All users'
 ];
