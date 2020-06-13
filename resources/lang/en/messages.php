@@ -50,5 +50,17 @@ return [
     'price'=>'Price: ',
     'cant_review'=>'You have been blocked from this action',
     'cantreserve'=>'You have been blocked from this action',
-    'all_users'=>'All users'
+    'all_users'=>'All users',
+    'search' => 'Search',
+    'logout' => 'Logout',
+    'RememberMe' => 'Remember me',
+    'Loginwithgoogle'=>'Login with Google',
+    'ForgotYourPassword?'=>'Forgot your password?',
+    'password' => 'Password: ',
+    'ConfirmPassword'=>'Confirm password:',
+    'name'=>'Name:',
+    'noreviews'=>'There are no reviews yet',
+    'block'=>'Block',
+    'unblock'=>'Unblock',
+
 ];

@@ -8,7 +8,7 @@
                     <div style="width: 40%; padding: 60px" class="border-right">
                             @csrf
                             @if (auth()->user()->getImageAttribute())<img src="{{ asset(auth()->user()->getImageAttribute())}}" style="width: 100px; height: 100px; border-radius: 50%">
-                            @else <img src="{{ asset('storage/uploads/images/default_avatar.jpg')}}" style="width: 100px; height: 100px; border-radius: 50%">
+                            @else <img src="{{ asset('uploads/images/default_avatar.jpg')}}" style="width: 100px; height: 100px; border-radius: 50%">
                             @endif
                         <h2 style="margin-top: 20px">{{auth()->user()->name}}</h2>
                         <h6>{{__('messages.email')}} {{auth()->user()->email}}</h6>

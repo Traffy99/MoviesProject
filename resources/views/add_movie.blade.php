@@ -10,10 +10,10 @@
                             @csrf
                             <div class="form-group">
                                 <div class="form-group row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <h6 class="col-form-label text-md-center" style="vertical-align: center">{{__('messages.title')}}</h6>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <input id="title"  type="text" class="form-control  @error('title') is-invalid @enderror" name="title" >
 
                                         @error('title')
@@ -25,10 +25,10 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <h6 class="col-form-label text-md-center" style="vertical-align: center">{{__('messages.length')}}</h6>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <input id="length"  type="text" class="form-control  @error('length') is-invalid @enderror" name="length">
 
                                         @error('length')
@@ -40,10 +40,10 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <h6 class="col-form-label text-md-center" style="vertical-align: center">{{__('messages.url')}}</h6>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <input id="url" type="text" class="form-control  @error('url') is-invalid @enderror" name="url">
 
                                         @error('url')
@@ -55,7 +55,7 @@
                                 </div>
 
 
-                                <div class="col-md-8 align-items-center">
+                                <div class="col-md-12 align-items-center">
 
 
                                     <button style="margin-top: 50px" type="submit" class="btn btn-light">{{__('messages.add_movie')}}</button>

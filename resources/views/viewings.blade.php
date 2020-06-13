@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6 offset-md-4">
-                        {{ Form::submit('Search', ['class' => 'btn btn-light']) }}
+                        {{ Form::submit(__('messages.search'), ['class' => 'btn btn-light']) }}
                     </div>
                 </div>
                 {{ Form::close() }}

@@ -16,7 +16,9 @@
 
                         <h2 style="padding-top: 50px">{{__('messages.reviews')}}</h2>
                         @if (auth()->user()&&!auth()->user()->is_blocked)<a style="margin-bottom: 20px" class="btn btn-light" href="{{ action('ReviewController@create', $movie->id) }}">{{__('messages.add_review')}}</a>
-                        @else <a style="margin-bottom: 20px" class="btn btn-light" >{{__('messages.cant_review')}}</a>
+                        @elseif(auth()->user()) <a style="margin-bottom: 20px" class="btn btn-light" >{{__('messages.cant_review')}}</a>
+                        @endif
+                        @if(count($reviews)==0) <p>{{__('messages.noreviews')}}</p>
                         @endif
                         @foreach($reviews as $review)
                             <div class="shadow" style="padding: 20px; margin-bottom: 20px">
@@ -35,7 +37,7 @@
                                         {{ Form::submit(__('messages.delete'), ['class' => 'btn btn-light']) }}
                                         {{ Form::close() }}
                                     </div>
-                                    @elseif(auth()->user()->permission_level == 1)
+                                    @elseif(auth()->user()&&auth()->user()->permission_level == 1)
                                     <div class="row">
                                         <a style="margin-bottom: 20px; margin-right: 10px; margin-left: 20px" class="btn btn-light" href="{{ action('ReviewController@edit', $review->id) }}">{{__('messages.edit_review')}}</a>
                                         {{ Form::open(['action' => ['ReviewController@destroy', $review->id], 'class' => 'form-horizontal', 'method'=>'delete']) }}

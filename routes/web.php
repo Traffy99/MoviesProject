@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+
 
 Route::get('/', 'ViewingController@index');
 Route::get('viewings/createViewing/{id}', 'ViewingController@createViewing');
