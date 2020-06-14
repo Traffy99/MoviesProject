@@ -16,7 +16,6 @@ class ReservationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        //$this->middleware('admin')->only(['']);
 
     }
     /**
@@ -47,10 +46,11 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->is_blocked ) return redirect()->route('viewings.index');
         $success = false;
         $reservations = Reservation::where('user_id', auth()->user()->id)->where('viewing_id', $request['viewing_id'])->get();
         $viewing = Viewing::findorfail($request['viewing_id']);
-        if(count($reservations) < 1 || true) {
+        if(count($reservations) < 1) {
             $reservation = new Reservation();
             $reservation->user_id = auth()->user()->id;
             $reservation->viewing_id = $request['viewing_id'];

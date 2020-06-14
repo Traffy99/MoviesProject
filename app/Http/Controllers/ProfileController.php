@@ -69,8 +69,12 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findorfail($id);
-        return view('edit_profile', ['name'=>$user->name, 'email'=>$user->email]);
+        if(auth()->user()->id == $id){
+            $user = User::findorfail($id);
+            return view('edit_profile', ['name'=>$user->name, 'email'=>$user->email]);
+        }
+        else return redirect()->back();
+
     }
 
     /**
@@ -82,12 +86,12 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        if(auth()->user()->name!=$request['name']){
+        if(auth()->user()&&auth()->user()->name!=$request['name']){
             $request->validate([
                 'name' => 'unique:users',
             ]);
         }
-        if(auth()->user()->email!=$request['email']){
+        if(auth()->user()&&auth()->user()->email!=$request['email']){
             $request->validate([
                 'email' => 'unique:users',
             ]);
@@ -100,6 +104,7 @@ class ProfileController extends Controller
 
         $user = User::findOrFail(auth()->user()->id);
         $user->name = $request['name'];
+        $user->email = $request['email'];
 
         if ($request->has('profile_picture')) {
             $image = $request->file('profile_picture');

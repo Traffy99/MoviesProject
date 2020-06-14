@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('all_users', ['users'=>$users]);
+        if(auth()->user()&&auth()->user()->permission_level == 1){
+            $users = User::all();
+            return view('all_users', ['users'=>$users]);
+        }
+        else return redirect()->route('viewings.index');
+
     }
 
     /**
@@ -30,16 +38,18 @@ class AdminController extends Controller
 
     public function block($id)
     {
-        $user = User::findorfail($id);
-        if($user->is_blocked==1){
-            $user->is_blocked = 0;
-            $user->save();
+        if(auth()->user()&&auth()->user()->permission_level == 1) {
+            $user = User::findorfail($id);
+            if ($user->is_blocked == 1) {
+                $user->is_blocked = 0;
+                $user->save();
+            } else {
+                $user->is_blocked = 1;
+                $user->save();
+            }
+            return redirect()->route('admin.index');
         }
-        else{
-            $user->is_blocked = 1;
-            $user->save();
-        }
-        return redirect()->route('admin.index');
+        else return redirect()->route('viewings.index');
     }
     /**
      * Store a newly created resource in storage.

@@ -9,7 +9,7 @@ return [
     'register'=>'Register',
     'reserve'=>'Reserve',
     'alreadyreserved'=>'Already reserved',
-    'successfullyreserved'=>'Successfully reserved',
+    'successfullyreserved'=>'A confirmation has been sent to your email address',
     'viewingstoday'=>'Viewings today',
     'allmovies'=>'All movies',
     'searchviewing'=>'Search for a viewing : ',

@@ -12,17 +12,18 @@ class ReviewController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->only(['indexAdmin', 'orderDone']);
 
     }
     public function create($movie)
     {
+        if(auth()->user()->is_blocked) return redirect()->back();
         $movie = Movie::findorfail($movie);
         return view('add_review', ['movie'=>$movie]);
     }
 
     public function store(Request $request)
     {
+        if(auth()->user->is_blocked) return redirect()->back();
         $rules = array(
             'text' => 'required|max:1000',
         );
@@ -50,6 +51,7 @@ class ReviewController extends Controller
     public function edit($id)
     {
         $review = Review::findorfail($id);
+        if(auth()->user()->is_blocked || auth()->user()->id != $review->user->id) return redirect()->back();
         return view('edit_review', ['text'=>$review->review_text, 'movie'=>$review->movie, 'review_id'=>$id]);
     }
 
@@ -68,6 +70,7 @@ class ReviewController extends Controller
         $this->validate($request, $rules, $this->messages());
 
         $review = Review::findorfail($id);
+        if(auth()->user()->is_blocked || auth()->user()->id != $review->user->id) return redirect()->back();
         $review->review_text = $request['text'];
         //$review->time = Carbon::now('GMT+3');
         $review->save();

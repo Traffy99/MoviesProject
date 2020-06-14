@@ -11,8 +11,8 @@
                             @if($user -> permission_level != 1)
                                 <div class="card-body {{$loop->last? "": "border-bottom"}} " style="display: flex; flex-direction: row">
                                     <div style="width: 20%;display: inline-block; padding-right: 30px">
-                                        @if($user->getImageAttribute())<img src="{{asset($user->getImageAttribute())}}" alt="image" width="50">
-                                        @else <img src="{{ asset('uploads/images/default_avatar.jpg')}}"  alt="image" width="50">
+                                        @if($user->getImageAttribute())<img src="{{asset($user->getImageAttribute())}}" alt="image" style="width: 50px; height: 50px; border-radius: 50%" >
+                                        @else <img src="{{ asset('uploads/images/default_avatar.jpg')}}"  alt="image" style="width: 50px; height: 50px; border-radius: 50%">
                                         @endif
                                     </div>
                                     <div style="width: 40%">

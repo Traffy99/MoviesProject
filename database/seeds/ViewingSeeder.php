@@ -15,10 +15,10 @@ class ViewingSeeder extends Seeder
     {
         Viewing::truncate();
 
-        Viewing::create(array('id' => 1, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-01T09:00:00'), 'price' => 4.50 ));
-        Viewing::create(array('id' => 2, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-02T09:00:00'), 'price' => 4.50 ));
-        Viewing::create(array('id' => 3, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-03T09:00:00'), 'price' => 4.50 ));
-        Viewing::create(array('id' => 4, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-04T09:00:00'), 'price' => 4.50 ));
+        Viewing::create(array('id' => 1, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-17T09:00:00'), 'price' => 4.50 ));
+        Viewing::create(array('id' => 2, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-18T12:00:00'), 'price' => 4.50 ));
+        Viewing::create(array('id' => 3, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-19T09:00:00'), 'price' => 4.50 ));
+        Viewing::create(array('id' => 4, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-20T09:00:00'), 'price' => 4.50 ));
         Viewing::create(array('id' => 5, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-05T09:00:00'), 'price' => 4.50 ));
         Viewing::create(array('id' => 6, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-06T09:00:00'), 'price' => 4.50 ));
         Viewing::create(array('id' => 7, 'movie_id' => '1', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-07T09:00:00'), 'price' => 4.50 ));
@@ -32,10 +32,10 @@ class ViewingSeeder extends Seeder
         Viewing::create(array('id' => 15, 'movie_id' => '6', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-15T09:00:00'), 'price' => 4.50 ));
         Viewing::create(array('id' => 16, 'movie_id' => '6', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-16T09:00:00'), 'price' => 4.50 ));
 
-        Viewing::create(array('id' => 17, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-1T12:00:00'), 'price' => 5.00 ));
-        Viewing::create(array('id' => 18, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-2T12:00:00'), 'price' => 5.00 ));
-        Viewing::create(array('id' => 19, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-3T12:00:00'), 'price' => 5.00 ));
-        Viewing::create(array('id' => 20, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-4T12:00:00'), 'price' => 5.00 ));
+        Viewing::create(array('id' => 17, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-17T15:00:00'), 'price' => 5.00 ));
+        Viewing::create(array('id' => 18, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-18T09:00:00'), 'price' => 5.00 ));
+        Viewing::create(array('id' => 19, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-19T12:00:00'), 'price' => 5.00 ));
+        Viewing::create(array('id' => 20, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-20T12:00:00'), 'price' => 5.00 ));
         Viewing::create(array('id' => 21, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-5T12:00:00'), 'price' => 5.00 ));
         Viewing::create(array('id' => 22, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-6T12:00:00'), 'price' => 5.00 ));
         Viewing::create(array('id' => 23, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-7T12:00:00'), 'price' => 5.00 ));
@@ -49,10 +49,10 @@ class ViewingSeeder extends Seeder
         Viewing::create(array('id' => 31, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-15T12:00:00'), 'price' => 5.00 ));
         Viewing::create(array('id' => 32, 'movie_id' => '2', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-16T12:00:00'), 'price' => 5.00 ));
 
-        Viewing::create(array('id' => 33, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-1T15:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 34, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-2T15:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 35, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-3T15:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 36, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-4T15:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 33, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-17T12:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 34, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-18T15:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 35, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-19T15:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 36, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-20T15:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 37, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-5T15:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 38, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-6T15:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 39, 'movie_id' => '3', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-7T15:00:00'), 'price' => 5.50 ));
@@ -66,10 +66,10 @@ class ViewingSeeder extends Seeder
         Viewing::create(array('id' => 47, 'movie_id' => '7', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-15T15:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 48, 'movie_id' => '7', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-16T15:00:00'), 'price' => 5.50 ));
 
-        Viewing::create(array('id' => 49, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-1T18:00:00'), 'price' => 6.50 ));
-        Viewing::create(array('id' => 50, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-2T18:00:00'), 'price' => 6.50 ));
-        Viewing::create(array('id' => 51, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-3T18:00:00'), 'price' => 6.50 ));
-        Viewing::create(array('id' => 52, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-4T18:00:00'), 'price' => 6.50 ));
+        Viewing::create(array('id' => 49, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-17T21:00:00'), 'price' => 6.50 ));
+        Viewing::create(array('id' => 50, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-18T18:00:00'), 'price' => 6.50 ));
+        Viewing::create(array('id' => 51, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-19T21:00:00'), 'price' => 6.50 ));
+        Viewing::create(array('id' => 52, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-20T18:00:00'), 'price' => 6.50 ));
         Viewing::create(array('id' => 53, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-5T18:00:00'), 'price' => 6.50 ));
         Viewing::create(array('id' => 54, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-6T18:00:00'), 'price' => 6.50 ));
         Viewing::create(array('id' => 55, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-7T18:00:00'), 'price' => 6.50 ));
@@ -83,10 +83,10 @@ class ViewingSeeder extends Seeder
         Viewing::create(array('id' => 63, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-15T18:00:00'), 'price' => 6.50 ));
         Viewing::create(array('id' => 64, 'movie_id' => '4', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-16T18:00:00'), 'price' => 6.50 ));
 
-        Viewing::create(array('id' => 65, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-1T21:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 66, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-2T21:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 67, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-3T21:00:00'), 'price' => 5.50 ));
-        Viewing::create(array('id' => 68, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-4T21:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 65, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-17T18:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 66, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-18T21:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 67, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-19T18:00:00'), 'price' => 5.50 ));
+        Viewing::create(array('id' => 68, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-20T21:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 69, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-5T21:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 70, 'movie_id' => '5', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-6T21:00:00'), 'price' => 5.50 ));
         Viewing::create(array('id' => 71, 'movie_id' => '8', 'time' => Carbon::createFromFormat('Y-m-d\TH:i:s', '2020-06-7T21:00:00'), 'price' => 5.50 ));

@@ -27,9 +27,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-
-
-        return view('add_movie');
+        if(auth()->user()&&auth()->user()->permission_level == 1) {
+            return view('add_movie');
+        }
+        else return redirect()->route('viewings.index');
     }
 
     /**
@@ -40,21 +41,23 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'title' => 'required|max:100',
-            'length' => 'required|integer|min:0',
-            'url' => 'required'
-        );
-        $this->validate($request, $rules);
+        if(auth()->user()&&auth()->user()->permission_level == 1) {
+            $rules = array(
+                'title' => 'required|max:100',
+                'length' => 'required|integer|min:0',
+                'url' => 'required'
+            );
+            $this->validate($request, $rules);
 
-        $movie = new Movie();
-        $movie->title = $request['title'];
-        $movie->length = $request['length'];
-        $movie->cover = $request['url'];
-        $movie->save();
+            $movie = new Movie();
+            $movie->title = $request['title'];
+            $movie->length = $request['length'];
+            $movie->cover = $request['url'];
+            $movie->save();
 
-
-        return redirect()->route('movies.index');
+            return redirect()->route('movies.index');
+        }
+        else return redirect()->route('viewings.index');
     }
 
     /**

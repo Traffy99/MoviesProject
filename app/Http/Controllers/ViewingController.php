@@ -48,8 +48,11 @@ class ViewingController extends Controller
 
     public function createViewing($id)
     {
-        $movie = Movie::findorfail($id);
-        return view('add_viewing', ['movie'=>$movie]);
+        if(auth()->user()->permission_level == 1) {
+            $movie = Movie::findorfail($id);
+            return view('add_viewing', ['movie' => $movie]);
+        }
+        else return redirect()->route('viewings.index');
     }
 
     /**
@@ -60,20 +63,23 @@ class ViewingController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'time' => 'required|date|after:today|unique:viewings,time',
-            'price' => 'required|numeric|min:1'
-        );
-        $this->validate($request, $rules, $this->messages());
+        if(auth()->user()->permission_level == 1) {
+            $rules = array(
+                'time' => 'required|date|after:today|unique:viewings,time',
+                'price' => 'required|numeric|min:1'
+            );
+            $this->validate($request, $rules, $this->messages());
 
-        $viewing = new Viewing();
-        $viewing->movie_id = $request['movie_id'];
-        $viewing->time = $request['time'];
-        $viewing->price = $request['price'];
-        $viewing->save();
+            $viewing = new Viewing();
+            $viewing->movie_id = $request['movie_id'];
+            $viewing->time = $request['time'];
+            $viewing->price = $request['price'];
+            $viewing->save();
 
 
-        return redirect()->route('movies.show', $request['movie_id']);
+            return redirect()->route('movies.show', $request['movie_id']);
+        }
+        else return redirect()->route('viewings.index');
     }
 
     private function messages()
