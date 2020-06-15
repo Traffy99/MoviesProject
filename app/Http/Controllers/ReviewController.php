@@ -23,7 +23,7 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        if(auth()->user->is_blocked) return redirect()->back();
+        if(auth()->user()->is_blocked) return redirect()->back();
         $rules = array(
             'text' => 'required|max:1000',
         );
